@@ -12,7 +12,7 @@
  <x-alert-success>
     {{ session('success') }}
  </x-alert-success>
-                    <div class="">
+                    <div class="flex">
                         @if (!$note->trashed())                            
                         
                     <p class="opacity-70">
@@ -23,12 +23,12 @@
                     </p>
 
 
-                    <a href="{{ route('notes.edit', $note) }}" class="btn-link">Edit Note</a>
+                    <a href="{{ route('notes.edit', $note) }}" class="btn-link ml-auto">Edit Note</a>
 
                     <form action="{{ route('notes.destroy', $note) }}" method="post">
                     @method('delete')
                     @csrf
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wish to move this note to trash')">Move Note to trash</button>
+                    <button type="submit" class="btn btn-danger ml-4" onclick="return confirm('Are you sure you wish to move this note to trash')">Move Note to trash</button>
                     </form>
                     @else
                         <p class="opacity-70">
