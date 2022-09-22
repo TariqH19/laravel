@@ -21,19 +21,16 @@
                     class="w-full" 
                     autocomplete="off"
                     :value="@old('title')"></x-text-input>
-                    @error('title')
-                    <div class="text-red-600 text-sm">{{ $message }}</div>
-                    @enderror
 
-                    <textarea name="text" 
+
+                    <x-textarea name="text" 
                     rows="10"
                     field="text" 
                     placeholder="Type something here" 
-                    class="w-full mt-6"></textarea>
+                    class="w-full mt-6"
+                    :value="@old('text')"></x-textarea>
 
-                    @error('text')
-                    <div class="text-red-600 text-sm">{{ $message }}</div>
-                    @enderror
+
 
                     <button class="mt-6">
                         Save Note
