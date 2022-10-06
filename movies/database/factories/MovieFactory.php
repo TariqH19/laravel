@@ -17,11 +17,11 @@ class MovieFactory extends Factory
     public function definition()
     {
         return [
-            'title' => fake()->paragraph(),
-            'genre' => fake()->paragraph(),
+            'title' => fake()->word(),
+            'genre' => fake()->word(),
             'runtime' => fake()->randomDigitNotNull(),
-            'director' => fake()->paragraph(),
-            'rating' => fake()->randomDigitNotNull(),
+            'director' => fake()->words(2,true),
+            'rating' => fake()->randomFloat(1, 1, 10),
             'description'=> fake()->paragraph(),
             'release_date'=> fake()->dateTimeThisDecade(),
         ];

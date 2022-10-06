@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use App\Http\Resources\MovieResource;
 use App\Http\Resources\MovieCollection;
 use App\Http\Controllers\MovieController;
 
@@ -27,7 +28,11 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $movie = Movie::create($request->only([
+            'title','genre','runtime','director','rating','description','release_date'
+        ]));
+
+        return new MovieResource($movie);
     }
 
     /**

@@ -16,6 +16,15 @@ class MovieResource extends JsonResource
     public function toArray($request)
     {
         //returns all database entities i will change this later so the json is formatted to what i want to display
-        return parent::toArray($request);
+        // return parent::toArray($request);
+        return[
+            'title' => $this->title,
+            'genre' => $this->genre,
+            'runtime' => $this->runtime,
+            'director' => $this->director,
+            'rating' => $this->rating,
+            'description' => $this->description,
+            'release_date' => $this->release_date,
+        ];
     }
 }
