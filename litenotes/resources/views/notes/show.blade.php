@@ -35,7 +35,7 @@
                         <strong>Deleted:</strong> {{ $note->deleted_at->diffForHumans() }}
                     </p>
                   
-<form action="{{ route('trashed.update', $note) }}" method="post">
+<form action="{{ route('trashed.update', $note) }}" method="post" class="ml-auto">
 @method('put')
 @csrf
 
@@ -43,7 +43,7 @@
 
 </form>
 
-                    <form action="{{ route('trashed.destroy', $note) }}" method="post">
+                    <form action="{{ route('trashed.destroy', $note) }}" method="post" class="ml-8">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you wish to delete this note forever? This action cannot be undone')">Delete Note forever</button>
