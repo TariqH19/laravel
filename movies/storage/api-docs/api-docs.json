@@ -35,6 +35,91 @@
                         "description": "Forbidden"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Create a new Movie",
+                "description": "Stores the movie in the DB",
+                "operationId": "store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "genre",
+                                    "runtime",
+                                    "director",
+                                    "rating",
+                                    "description",
+                                    "release_date"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample Title"
+                                    },
+                                    "genre": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample Genre"
+                                    },
+                                    "runtime": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "120"
+                                    },
+                                    "director": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample Director"
+                                    },
+                                    "rating": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "7.2"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "A long description about this great book"
+                                    },
+                                    "release_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2022-05-05"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

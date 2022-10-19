@@ -41,12 +41,40 @@ class MovieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
+     *      * @OA\Post(
+     *      path="/api/movies",
+     *      operationId="store",
+     *      tags={"Movies"},
+     *      summary="Create a new Movie",
+     *      description="Stores the movie in the DB",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *            required={"title", "genre", "runtime", "director", "rating","description","release_date"},
+     *            @OA\Property(property="title", type="string", format="string", example="Sample Title"),
+     *            @OA\Property(property="genre", type="string", format="string", example="Sample Genre"),
+     *            @OA\Property(property="runtime", type="integer", format="integer", example="120"),
+     *            @OA\Property(property="director", type="string", format="string", example="Sample Director"),
+     *            @OA\Property(property="rating", type="float", format="float", example="7.2"),
+     *            @OA\Property(property="description", type="string", format="string", example="A long description about this great movie"),
+     *            @OA\Property(property="release_date", type="date", format="date", example="2022-05-05"),
+     *          )
+     *      ),
+     *     @OA\Response(
+     *          response=200, description="Success",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="status", type="integer", example=""),
+     *             @OA\Property(property="data",type="object")
+     *          )
+     *     )
+     * )
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //code to store a movie
+        
         $movie = Movie::create($request->only([
             'title','genre','runtime','director','rating','description','release_date'
         ]));
