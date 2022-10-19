@@ -135,7 +135,25 @@ class MovieController extends Controller
     }
 
     /**
-     * 
+     *      * @OA\Delete(
+     *    path="/api/movies/{id}",
+     *    operationId="destroy",
+     *    tags={"Movies"},
+     *    summary="Delete a Movie",
+     *    description="Delete Movie",
+     *    @OA\Parameter(name="id", in="path", description="Id of a Movie", required=true,
+     *        @OA\Schema(type="integer")
+     *    ),
+     *    @OA\Response(
+     *         response=Response::HTTP_NO_CONTENT,
+     *         description="Success",
+     *         @OA\JsonContent(
+     *         @OA\Property(property="status_code", type="integer", example="204"),
+     *         @OA\Property(property="data",type="object")
+     *          ),
+     *       )
+     *      )
+     *  )
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Movie  $movie
