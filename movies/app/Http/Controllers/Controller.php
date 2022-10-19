@@ -26,11 +26,6 @@ use Illuminate\Routing\Controller as BaseController;
  *         url="https://www.apache.org/licenses/LICENSE-2.0.html"
  *     )
  * )
- * @OA\Get(
- *   path="/",
- *   description="Home Page",
- *   @OA\Response(response="default", description="Welcome Page")
- * )
  */
 
 class Controller extends BaseController
