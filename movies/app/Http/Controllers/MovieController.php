@@ -83,6 +83,32 @@ class MovieController extends Controller
 
     /**
      * Display the specified resource.
+     * 
+     *     * @OA\Get(
+    *     path="/api/movies/{id}",
+    *     description="Gets a movie by ID",
+    *     tags={"Movies"},
+    *          @OA\Parameter(
+        *          name="id",
+        *          description="Movie id",
+        *          required=true,
+        *          in="path",
+        *          @OA\Schema(
+        *              type="integer")
+     *          ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="Successful operation"
+        *       ),
+        *      @OA\Response(
+        *          response=401,
+        *          description="Unauthenticated",
+        *      ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="Forbidden"
+        *      )
+ * )
      *
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\MovieResource
@@ -101,14 +127,15 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        // $movie->update($request->only([
-        //     'title','genre','runtime','director','rating','description','release_date'
-        // ]));
+        $movie->update($request->only([
+            'title','genre','runtime','director','rating','description','release_date'
+        ]));
 
-        // return new MovieResource($movie);
+        return new MovieResource($movie);
     }
 
     /**
+     * 
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Movie  $movie
@@ -116,7 +143,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        // $movie->delete();
-        // return response()->json(null,Response::HTTP_NO_CONTENT);
+        $movie->delete();
+        return response()->json(null,Response::HTTP_NO_CONTENT);
     }
 }
