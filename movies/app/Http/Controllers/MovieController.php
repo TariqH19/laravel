@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Resources\MovieResource;
 use App\Http\Resources\MovieCollection;
 use App\Http\Controllers\MovieController;
@@ -28,22 +29,22 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        $movie = Movie::create($request->only([
-            'title','genre','runtime','director','rating','description','release_date'
-        ]));
+        // $movie = Movie::create($request->only([
+        //     'title','genre','runtime','director','rating','description','release_date'
+        // ]));
 
-        return new MovieResource($movie);
+        // return new MovieResource($movie);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Movie  $movie
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\MovieResource
      */
     public function show(Movie $movie)
     {
-        //
+        return new MovieResource($movie);
     }
 
     /**
@@ -55,7 +56,11 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
-        //
+        // $movie->update($request->only([
+        //     'title','genre','runtime','director','rating','description','release_date'
+        // ]));
+
+        // return new MovieResource($movie);
     }
 
     /**
@@ -66,6 +71,7 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        // $movie->delete();
+        // return response()->json(null,Response::HTTP_NO_CONTENT);
     }
 }
