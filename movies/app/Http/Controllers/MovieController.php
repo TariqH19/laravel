@@ -29,11 +29,11 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        // $movie = Movie::create($request->only([
-        //     'title','genre','runtime','director','rating','description','release_date'
-        // ]));
-
-        // return new MovieResource($movie);
+        //code to store a movie
+        $movie = Movie::create($request->only([
+            'title','genre','runtime','director','rating','description','release_date'
+        ]));
+        return new MovieResource($movie);
     }
 
     /**
