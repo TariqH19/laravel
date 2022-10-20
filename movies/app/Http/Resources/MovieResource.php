@@ -25,6 +25,7 @@ class MovieResource extends JsonResource
             'rating' => $this->rating,
             'description' => $this->description,
             'release_date' => $this->release_date,
+            'image' => $this->image,
         ];
     }
 }
