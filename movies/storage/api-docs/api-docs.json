@@ -51,7 +51,8 @@
                                     "director",
                                     "rating",
                                     "description",
-                                    "release_date"
+                                    "release_date",
+                                    "image"
                                 ],
                                 "properties": {
                                     "title": {
@@ -88,6 +89,11 @@
                                         "type": "string",
                                         "format": "date",
                                         "example": "2022-05-05"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "https://picsum.photos/200/300"
                                     }
                                 },
                                 "type": "object"
