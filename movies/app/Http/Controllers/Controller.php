@@ -21,10 +21,6 @@ use Illuminate\Routing\Controller as BaseController;
  *      @OA\Contact(
  *          email="N00202437@iadt.ie"
  *      ),
- *     @OA\License(
- *         name="Apache 2.0",
- *         url="https://www.apache.org/licenses/LICENSE-2.0.html"
- *     )
  * )
  */
 

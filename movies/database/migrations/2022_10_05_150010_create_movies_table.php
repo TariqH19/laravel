@@ -22,6 +22,7 @@ return new class extends Migration
             $table->float('rating');
             $table->text('description');
             $table->date('release_date');
+            $table->string('image');
             $table->timestamps();
         });
     }

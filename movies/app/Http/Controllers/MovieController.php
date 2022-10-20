@@ -12,7 +12,7 @@ use App\Http\Controllers\MovieController;
 class MovieController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a list of all Movies.
      *
      *  * @OA\Get(
  *     path="/api/movies",
@@ -82,7 +82,7 @@ class MovieController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display 1 movie by the id.
      * 
      *     * @OA\Get(
     *     path="/api/movies/{id}",

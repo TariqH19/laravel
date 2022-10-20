@@ -6,10 +6,6 @@
         "contact": {
             "email": "N00202437@iadt.ie"
         },
-        "license": {
-            "name": "Apache 2.0",
-            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
-        },
         "version": "1.0.0",
         "x-logo": {
             "url": "https://via.placeholder.com/190x90.png?text=L5-Swagger"
@@ -21,7 +17,7 @@
                 "tags": [
                     "Movies"
                 ],
-                "summary": "Display a listing of the resource.",
+                "summary": "Display a list of all Movies.",
                 "description": "Displays all the movies",
                 "operationId": "a7859dc5cd106bbeae5492e22df893ec",
                 "responses": {
@@ -127,7 +123,7 @@
                 "tags": [
                     "Movies"
                 ],
-                "summary": "Display the specified resource.",
+                "summary": "Display 1 movie by the id.",
                 "description": "Gets a movie by ID",
                 "operationId": "a7031f1ec2eb856acbdd7f7054ed001d",
                 "parameters": [
