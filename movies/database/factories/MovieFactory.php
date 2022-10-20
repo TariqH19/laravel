@@ -24,6 +24,7 @@ class MovieFactory extends Factory
             'rating' => fake()->randomFloat(1, 1, 10),
             'description'=> fake()->paragraph(),
             'release_date'=> fake()->dateTimeThisDecade(),
+            'image'=> 'https://picsum.photos/200/300',
         ];
     }
 }
