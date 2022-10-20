@@ -50,7 +50,7 @@ class MovieController extends Controller
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *            required={"title", "genre", "runtime", "director", "rating","description","release_date"},
+     *            required={"title", "genre", "runtime", "director", "rating","description","release_date","image"},
      *            @OA\Property(property="title", type="string", format="string", example="Sample Title"),
      *            @OA\Property(property="genre", type="string", format="string", example="Sample Genre"),
      *            @OA\Property(property="runtime", type="integer", format="integer", example="120"),
@@ -58,6 +58,7 @@ class MovieController extends Controller
      *            @OA\Property(property="rating", type="float", format="float", example="7.2"),
      *            @OA\Property(property="description", type="string", format="string", example="A long description about this great movie"),
      *            @OA\Property(property="release_date", type="date", format="date", example="2022-05-05"),
+     *            @OA\Property(property="image", type="string", format="string", example="https://picsum.photos/200/300"),
      *          )
      *      ),
      *     @OA\Response(
