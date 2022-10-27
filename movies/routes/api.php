@@ -18,5 +18,5 @@ use App\Http\Controllers\MovieController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
+//Unlike the wep.php this is stateless it doesnt need an old requests to work every request works in isolation
 Route::apiResource('/movies', MovieController::Class);
