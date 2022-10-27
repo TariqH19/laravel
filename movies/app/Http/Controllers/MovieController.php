@@ -33,6 +33,7 @@ class MovieController extends Controller
  * )
      * @return \Illuminate\Http\Response
      */
+    //This gets all movies it uses the movie collection not the resource
     public function index()
     {
         return new MovieCollection(Movie::all());
@@ -73,6 +74,10 @@ class MovieController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //to store a movie in the database. I used the store function to store the movie and I specified what information needs the 
+    //be sent so the movie is created. The information specified is the information that is in a protected fillable array in the 
+    //movie Model. This prevents mass assignment. Once all relevant fields have been filled with the correct data the new movie is made. The Http method used is also post.
+    //This creates a new movie and uses the movie resource
     public function store(Request $request)
     {
         
@@ -126,6 +131,9 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
+    //to edit/ update an existing movie I used the update function. Like the store function I specify the fields that must be filled 
+    //then instead of creating I am updating the movie. There is also a different Http method instead of using post I used put to 
+    //update the movie.
     public function update(Request $request, Movie $movie)
     {
         $movie->update($request->only([
@@ -160,6 +168,9 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
+    //to delete a movie from the database I used the destroy function. In this function I get the movie id, similar to the show 
+    //function I used route model binding. This allows me to get the movies id and delete the movie. The Http method used is the 
+    //delete method.
     public function destroy(Movie $movie)
     {
         $movie->delete();
