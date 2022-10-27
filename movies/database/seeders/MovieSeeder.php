@@ -15,7 +15,8 @@ class MovieSeeder extends Seeder
      */
     public function run()
     {
-        //inserts data into the database this data is in the movie factory, we can also control the amount of times the database is seeded by passing a number in the times method
+        //inserts data into the database this data is in the movie factory, we can also control the amount of times the database is 
+        //seeded by passing a number in the times method
         Movie::factory()->times(5)->create();
     }
 }
