@@ -77,7 +77,7 @@ class MovieController extends Controller
     {
         
         $movie = Movie::create($request->only([
-            'title','genre','runtime','director','rating','description','release_date'
+            'title','genre','runtime','director','rating','description','release_date','image'
         ]));
         return new MovieResource($movie);
     }
@@ -129,7 +129,7 @@ class MovieController extends Controller
     public function update(Request $request, Movie $movie)
     {
         $movie->update($request->only([
-            'title','genre','runtime','director','rating','description','release_date'
+            'title','genre','runtime','director','rating','description','release_date','image'
         ]));
 
         return new MovieResource($movie);
