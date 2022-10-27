@@ -17,6 +17,7 @@ class MovieCollection extends ResourceCollection
     {
         return [
             //the creator of the api
+            //This maps each item of the collection and returns each item to the resource class
             'data' => $this->collection,
             'version'=>'1.0.0',
             'author'=>'Tariq Horan'
