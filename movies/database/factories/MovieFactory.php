@@ -16,6 +16,9 @@ class MovieFactory extends Factory
      */
     public function definition()
     {
+        //the information that is seeded in the database
+        //I used fake to just give me a random data
+        //The image is a url that gives me a random picture everytime
         return [
             'title' => fake()->word(),
             'genre' => fake()->word(),
