@@ -36,7 +36,8 @@ class MovieController extends Controller
     //This gets all movies it uses the movie collection not the resource
     public function index()
     {
-        return new MovieCollection(Movie::all());
+        // return new MovieCollection(Movie::all());
+        return new MovieCollection(Movie::with('cinema')->get());
     }
 
     /**
@@ -81,9 +82,22 @@ class MovieController extends Controller
     public function store(Request $request)
     {
         
-        $movie = Movie::create($request->only([
-            'title','genre','runtime','director','rating','description','release_date','image'
-        ]));
+        // $movie = Movie::create($request->only([
+        //     'title','genre','runtime','director','rating','description','release_date','image'
+        // ]));
+        $movie = Movie::create([
+            'title' => $request->title,
+            'genre' => $request->genre,
+            'runtime' => $request->runtime,
+            'director' => $request->director,
+            'rating' => $request->rating,
+            'description' => $request->description,
+            'release_date' => $request->release_date,
+            'image' => $request->image,
+            'cinema_id'=>$request->cinema_id,
+
+        ]);
+
         return new MovieResource($movie);
     }
 
@@ -137,7 +151,7 @@ class MovieController extends Controller
     public function update(Request $request, Movie $movie)
     {
         $movie->update($request->only([
-            'title','genre','runtime','director','rating','description','release_date','image'
+            'title','genre','runtime','director','rating','description','release_date','image','cinema_id'
         ]));
 
         return new MovieResource($movie);
