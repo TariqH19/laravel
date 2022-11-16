@@ -11,7 +11,7 @@ use Illuminate\Http\Response;
 class AuthController extends Controller
 {
     // name, email and password should be passed in as part of the request
-    public function register(Request $request)
+   public function register(Request $request)
     {
         try {
             $validator = Validator::make($request->all(),
@@ -63,47 +63,47 @@ class AuthController extends Controller
         }
     }
 
-    // public function login(Request $request)
-    // {
-    //     try {
-    //         $validateUser = Validator::make($request->all(),
-    //         [
-    //             'email' => 'required|email',
-    //             'password' => 'required'
-    //         ]);
+    public function login(Request $request)
+    {
+        try {
+            $validateUser = Validator::make($request->all(),
+            [
+                'email' => 'required|email',
+                'password' => 'required'
+            ]);
 
-    //         if($validateUser->fails()){
-    //             return response()->json([
-    //                 'status' => false,
-    //                 'message' => 'validation error',
-    //                 'errors' => $validateUser->errors()
-    //             ], 401);
-    //         }
+            if($validateUser->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'validation error',
+                    'errors' => $validateUser->errors()
+                ], 401);
+            }
 
-    //         if(!Auth::attempt($request->only(['email', 'password']))){
-    //             return response()->json([
-    //                 'status' => false,
-    //                 'message' => 'Email & Password does not match with our record.',
-    //             ], 401);
-    //         }
+            if(!Auth::attempt($request->only(['email', 'password']))){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Email & Password does not match with our record.',
+                ], 401);
+            }
 
-    //         $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->first();
 
-    //         return response()->json([
-    //             'status' => true,
-    //             'message' => 'User Logged In Successfully',
-    //             'token' => $user->createToken("movies-token")->plainTextToken
-    //         ], 200);
+            return response()->json([
+                'status' => true,
+                'message' => 'User Logged In Successfully',
+                'token' => $user->createToken("movies-token")->plainTextToken
+            ], 200);
 
-    //     }
-    //     // If any other error is thrown it will be caught here
-    //     catch (\Throwable $th) {
-    //         return response()->json([
-    //             'status' => false,
-    //             'message' => $th->getMessage()
-    //         ], 500);
-    //     }
-    // }
+        }
+        // If any other error is thrown it will be caught here
+        catch (\Throwable $th) {
+            return response()->json([
+                'status' => false,
+                'message' => $th->getMessage()
+            ], 500);
+        }
+    }
 
     // This function returns the user profile, but only if they are logged in so have an authentication token
     // public function user()
