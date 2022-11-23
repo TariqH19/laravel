@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MovieController;
-use App\Http\Controllers\PublisherController;
+use App\Http\Controllers\CinemaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,7 +47,7 @@ Route::get('/movies/{movie}', [MovieController::class, 'show']);
 // this line create all routes for PublisherController.
 // These routes can all be accessed without an authentication token.
 // How would you alter this so you need authentication for publisher routes that alter the database?
-Route::apiResource('/cinemas', PublisherController::class);
+Route::apiResource('/cinemas', CinemaController::class);
 
 // This will define the route for Author, the implementation is not yet completed, so it's commented out.
 // Route::resource('/authors', AuthorController::class)->only(['index', 'show']);

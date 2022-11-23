@@ -12,6 +12,154 @@
         }
     },
     "paths": {
+        "/api/cinemas": {
+            "get": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Display a list of all Cinemas.",
+                "description": "Displays all the cinemas",
+                "operationId": "d4442fa37f46d2f9df418f697dd88075",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation, Returns a list of Cinemas in JSON format"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Create a new Cinema",
+                "description": "Stores the cinema in the DB",
+                "operationId": "storeCinema",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "location"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample name"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample location"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cinemas/{id}": {
+            "get": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Display 1 cinema by the id.",
+                "description": "Gets a cinema by ID",
+                "operationId": "8bdf9217c25b7a25bdc4c2f623bf2a79",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Cinema id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Delete a Cinema",
+                "description": "Delete Cinema",
+                "operationId": "destroyCinema",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of a Cinema",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status_code": {
+                                            "type": "integer",
+                                            "example": "204"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/movies": {
             "get": {
                 "tags": [
