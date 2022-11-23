@@ -106,15 +106,15 @@ class AuthController extends Controller
     }
 
     // This function returns the user profile, but only if they are logged in so have an authentication token
-    // public function user()
-    // {
-    //     return response()->json(['user' => auth()->user()], Response::HTTP_OK);
-    // }
+    public function user()
+    {
+        return response()->json(['user' => auth()->user()], Response::HTTP_OK);
+    }
 
-    // public function logout(Request $request)
-    // {
+    public function logout(Request $request)
+    {
 
-    //     $request->user()->tokens()->delete();
-    //     return response()->json(['message' => 'Successfully logged out'], Response::HTTP_OK);
-    // }
+        $request->user()->tokens()->delete();
+        return response()->json(['message' => 'Successfully logged out'], Response::HTTP_OK);
+    }
 }
