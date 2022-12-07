@@ -15,6 +15,10 @@ class MovieResource extends JsonResource
      */
     public function toArray($request)
     {
+         $actors=array();
+        foreach($this->actors as $actor){
+            array_push($actors, $actor->fname);
+        }
         //returns all database entities i will change this later so the json is formatted to what i want to display
         // return parent::toArray($request);
         return[
@@ -29,6 +33,7 @@ class MovieResource extends JsonResource
             'cinema_id'=>$this->cinema->id,
             'cinema_name'=>$this->cinema->name,
             'cinema_location'=>$this->cinema->location,
+            'actors'=>$actors
         ];
     }
 }
