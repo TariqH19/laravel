@@ -9,8 +9,39 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class AuthController extends Controller
-{
+{ 
     // name, email and password should be passed in as part of the request
+        /**
+     * Store a newly created resource in storage.
+     *
+     *      * @OA\Post(
+     *      path="/api/auth/register",
+     *      operationId="register",
+     *      tags={"Users"},
+     *      summary="Register",
+     *      description="Register",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *            required={"name", "email","password"},
+     *            @OA\Property(property="name", type="string", format="string", example="Jon Doe"),
+     *            @OA\Property(property="email", type="string", format="string", example="JonDoe@gmail.com"),
+     *            @OA\Property(property="password", type="string", format="string", example="A very strong password"),
+     *            
+     *          )
+     *      ),
+     *     @OA\Response(
+     *          response=200, description="Success",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="status", type="integer", example=""),
+     *             @OA\Property(property="data",type="object")
+     *          )
+     *     )
+     * )
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
    public function register(Request $request)
     {
         try {
@@ -63,6 +94,38 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     *      * @OA\Post(
+     *      path="/api/auth/login",
+     *      operationId="login",
+     *      tags={"Users"},
+     *      summary="Login",
+     *      description="Login",
+     *      @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *            required={"name", "email","password"},
+     *            @OA\Property(property="name", type="string", format="string", example="Jon Doe"),
+     *            @OA\Property(property="email", type="string", format="string", example="JonDoe@gmail.com"),
+     *            @OA\Property(property="password", type="string", format="string", example="A very strong password"),
+     *            
+     *          )
+     *      ),
+     *     @OA\Response(
+     *          response=200, description="Success",
+     *          @OA\JsonContent(
+     *             @OA\Property(property="status", type="integer", example=""),
+     *             @OA\Property(property="data",type="object")
+     *          )
+     *     )
+     * )
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+
     public function login(Request $request)
     {
         try {
@@ -105,6 +168,35 @@ class AuthController extends Controller
         }
     }
 
+    /**
+ * 
+ * @OA\Get(
+ *      path="/api/auth/user",
+ *      operationId="getListOfUsers",
+ *      tags={"Users"},
+ *      description="Get list of users",
+ *      security={{"bearerAuth":{}}}, 
+
+ *      @OA\Response(
+ *          response=200,
+ *          description="Get list of users.",
+ *          @OA\JsonContent(type="object",
+ *              @OA\Property(property="message", type="string"),
+ *              @OA\Property(property="data", type="array",
+ *                  @OA\Items(type="object",
+ *                      @OA\Property(property="id", type="integer"),
+ *                      @OA\Property(property="name", type="string"),
+ *                      @OA\Property(property="email", type="string"),
+ *                  ),
+ *              ),
+ *          ),
+ *       ),
+ *       @OA\Response(response=401, description="Unauthorized"),
+ *       @OA\Response(response=404, description="Not Found"),
+ * )
+ * 
+ * @return JsonResponse
+ */
     // This function returns the user profile, but only if they are logged in so have an authentication token
     public function user()
     {

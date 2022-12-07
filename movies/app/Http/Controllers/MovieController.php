@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Resources\MovieResource;
 use App\Http\Resources\MovieCollection;
+use App\Http\Requests\StoreMovieRequest;
 use App\Http\Controllers\MovieController;
+use App\Http\Requests\UpdateMovieRequest;
 
 class MovieController extends Controller
 {
@@ -37,7 +39,9 @@ class MovieController extends Controller
     public function index()
     {
         // return new MovieCollection(Movie::all());
-        return new MovieCollection(Movie::with('cinema')->get());
+        return new MovieCollection(Movie::with('cinema')
+        ->with('actors')
+        ->get());
     }
 
     /**
@@ -72,14 +76,14 @@ class MovieController extends Controller
      *     )
      * )
      * 
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreMovieRequest  $request
      * @return \Illuminate\Http\Response
      */
     //to store a movie in the database. I used the store function to store the movie and I specified what information needs the 
     //be sent so the movie is created. The information specified is the information that is in a protected fillable array in the 
     //movie Model. This prevents mass assignment. Once all relevant fields have been filled with the correct data the new movie is made. The Http method used is also post.
     //This creates a new movie and uses the movie resource
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
         
         // $movie = Movie::create($request->only([
@@ -97,6 +101,8 @@ class MovieController extends Controller
             'cinema_id'=>$request->cinema_id,
 
         ]);
+
+        $movie->actors()->attach($request->authors);
 
         return new MovieResource($movie);
     }
@@ -139,16 +145,57 @@ class MovieController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Movie  $movie
-     * @return \Illuminate\Http\Response
-     */
+    * @OA\Put(
+    *      path="/api/movies",
+    *      operationId="updateMovie",
+    *      tags={"Movies"},
+    *      summary="Update a Movie",
+    *      description="Stores the movie in the DB",
+    *         @OA\Parameter(
+    *          name="id",
+    *          description="Movie id",
+    *          required=true,
+    *          in="path",
+    *          @OA\Schema(
+    *          type="integer")
+    *          ),
+    *      @OA\RequestBody(
+    *         required=true,
+    *         @OA\JsonContent(
+     *            required={"title", "genre", "runtime", "director", "rating","description","release_date","image"},
+     *            @OA\Property(property="title", type="string", format="string", example="Sample Title"),
+     *            @OA\Property(property="genre", type="string", format="string", example="Sample Genre"),
+     *            @OA\Property(property="runtime", type="integer", format="integer", example="120"),
+     *            @OA\Property(property="director", type="string", format="string", example="Sample Director"),
+     *            @OA\Property(property="rating", type="float", format="float", example="7.2"),
+     *            @OA\Property(property="description", type="string", format="string", example="A long description about this great movie"),
+     *            @OA\Property(property="release_date", type="date", format="date", example="2022-05-05"),
+     *            @OA\Property(property="image", type="string", format="string", example="https://picsum.photos/200/300"),
+    *          )
+    *      ),
+    *     @OA\Response(
+    *          response=200, description="Success",
+    *          @OA\JsonContent(
+    *             @OA\Property(property="status", type="integer", example=""),
+    *             @OA\Property(property="data",type="object")
+    *          )
+    *      )
+    * )
+    * 
+    * Update the specified resource in the movie table.
+    * The user sends a put request though the URL. This gets request will display all the movies in the movie table. 
+    * Using the route defined in the API.php it calls the update function in the movie controller. 
+    * From here it takes all the data that was given by the user and stores it in the $movie variable and 
+    * then sends the data in the variable to the movie collection. However, using the put request will completely delete and recreate.   
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Models\Movie  $movie
+    * @return \Illuminate\Http\Response
+    */
     //to edit/ update an existing movie I used the update function. Like the store function I specify the fields that must be filled 
     //then instead of creating I am updating the movie. There is also a different Http method instead of using post I used put to 
     //update the movie.
-    public function update(Request $request, Movie $movie)
+    public function update(UpdateMovieRequest $request, Movie $movie)
     {
         $movie->update($request->only([
             'title','genre','runtime','director','rating','description','release_date','image','cinema_id'

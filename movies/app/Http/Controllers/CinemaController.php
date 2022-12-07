@@ -38,7 +38,7 @@ class CinemaController extends Controller
         //
         return new CinemaCollection(Cinema::paginate(1));
     }
-
+ 
 /**
      * Store a newly created resource in storage.
      *
@@ -116,12 +116,47 @@ class CinemaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cinema  $cinema
-     * @return \Illuminate\Http\Response
-     */
+    * @OA\Put(
+    *      path="/api/cinemas",
+    *      operationId="update",
+    *      tags={"Cinemas"},
+    *      summary="Update a Cinema",
+    *      description="Stores the cinema in the DB",
+    *         @OA\Parameter(
+    *          name="id",
+    *          description="Cinema id",
+    *          required=true,
+    *          in="path",
+    *          @OA\Schema(
+    *          type="integer")
+    *          ),
+    *      @OA\RequestBody(
+    *         required=true,
+    *         @OA\JsonContent(
+    *            required={"name", "location"},
+     *            @OA\Property(property="name", type="string", format="string", example="Sample name"),
+     *            @OA\Property(property="location", type="string", format="string", example="Sample location"),
+    *          )
+    *      ),
+    *     @OA\Response(
+    *          response=200, description="Success",
+    *          @OA\JsonContent(
+    *             @OA\Property(property="status", type="integer", example=""),
+    *             @OA\Property(property="data",type="object")
+    *          )
+    *      )
+    * )
+    * 
+    * Update the specified resource in the cinema table.
+    * The user sends a put request though the URL. This gets request will display all the cinemas in the cinema table. 
+    * Using the route defined in the API.php it calls the update function in the cinema controller. 
+    * From here it takes all the data that was given by the user and stores it in the $cinema variable and 
+    * then sends the data in the variable to the cinema collection. However, using the put request will completely delete and recreate.   
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @param  \App\Models\Cinema  $cinema
+    * @return \Illuminate\Http\Response
+    */
     public function update(UpdateCinemaRequest $request, Cinema $cinema)
     {
         $cinema->update($request->all());
