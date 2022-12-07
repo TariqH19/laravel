@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\ActorSeeder;
 use Database\Seeders\CinemaSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -22,5 +23,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(CinemaSeeder::class);
+
+        $this->call(ActorSeeder::class);
+
     }
 }

@@ -29,11 +29,15 @@ Route::post('/auth/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function (){
     Route::post('/auth/logout',[AuthController::class, 'logout']);
     Route::get('/auth/user',[AuthController::class, 'user']);
+    
+  Route::apiResource('/movies', MovieController::class)->except((['index', 'show']));
+
 
     // You need to be logged in for all movie functionality except get all and get by id
-    Route::apiResource('/movies', MovieController::class)->except((['index', 'show']));
+  
 });
 
+  
 // This one line creates all routes for the MovieController
 // if you are not providing all actions the you don't need all the routes
 // so you can specfiy the routes individually
