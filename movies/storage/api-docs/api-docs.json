@@ -212,72 +212,6 @@
                     }
                 }
             },
-            "put": {
-                "tags": [
-                    "Cinemas"
-                ],
-                "summary": "Update a Cinema",
-                "description": "Stores the cinema in the DB",
-                "operationId": "update",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Cinema id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "location"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Sample name"
-                                    },
-                                    "location": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Sample location"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": ""
-                                        },
-                                        "data": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
             "post": {
                 "tags": [
                     "Cinemas"
@@ -365,6 +299,72 @@
                     }
                 }
             },
+            "put": {
+                "tags": [
+                    "Cinemas"
+                ],
+                "summary": "Update a Cinema",
+                "description": "Stores the cinema in the DB",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Cinema id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "location"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample name"
+                                    },
+                                    "location": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample location"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "delete": {
                 "tags": [
                     "Cinemas"
@@ -417,6 +417,142 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation, Returns a list of Movies in JSON format"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Create a new Movie",
+                "description": "Stores the movie in the DB",
+                "operationId": "store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "genre",
+                                    "runtime",
+                                    "director",
+                                    "rating",
+                                    "description",
+                                    "release_date",
+                                    "image"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample Title"
+                                    },
+                                    "genre": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample Genre"
+                                    },
+                                    "runtime": {
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "120"
+                                    },
+                                    "director": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "Sample Director"
+                                    },
+                                    "rating": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "example": "7.2"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "A long description about this great movie"
+                                    },
+                                    "release_date": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2022-05-05"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "https://picsum.photos/200/300"
+                                    },
+                                    "cinema_id": {
+                                        "type": "number",
+                                        "example": "1"
+                                    },
+                                    "actors": {
+                                        "type": "number",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "integer",
+                                            "example": ""
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/movies/{id}": {
+            "get": {
+                "tags": [
+                    "Movies"
+                ],
+                "summary": "Display 1 movie by the id.",
+                "description": "Gets a movie by ID",
+                "operationId": "a7031f1ec2eb856acbdd7f7054ed001d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Movie id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
                     },
                     "401": {
                         "description": "Unauthenticated"
@@ -499,97 +635,24 @@
                                         "type": "string",
                                         "format": "string",
                                         "example": "https://picsum.photos/200/300"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Success",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "type": "integer",
-                                            "example": ""
-                                        },
-                                        "data": {
-                                            "type": "object"
-                                        }
                                     },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "Movies"
-                ],
-                "summary": "Create a new Movie",
-                "description": "Stores the movie in the DB",
-                "operationId": "store",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "title",
-                                    "genre",
-                                    "runtime",
-                                    "director",
-                                    "rating",
-                                    "description",
-                                    "release_date",
-                                    "image"
-                                ],
-                                "properties": {
-                                    "title": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Sample Title"
-                                    },
-                                    "genre": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Sample Genre"
-                                    },
-                                    "runtime": {
-                                        "type": "integer",
-                                        "format": "integer",
-                                        "example": "120"
-                                    },
-                                    "director": {
-                                        "type": "string",
-                                        "format": "string",
-                                        "example": "Sample Director"
-                                    },
-                                    "rating": {
+                                    "cinema_id": {
                                         "type": "number",
-                                        "format": "float",
-                                        "example": "7.2"
+                                        "example": "1"
                                     },
-                                    "description": {
+                                    "cinema_name": {
                                         "type": "string",
                                         "format": "string",
-                                        "example": "A long description about this great movie"
+                                        "example": "Example Cinema Name"
                                     },
-                                    "release_date": {
-                                        "type": "string",
-                                        "format": "date",
-                                        "example": "2022-05-05"
-                                    },
-                                    "image": {
+                                    "cinema_location": {
                                         "type": "string",
                                         "format": "string",
-                                        "example": "https://picsum.photos/200/300"
+                                        "example": "Example Cinema Location"
+                                    },
+                                    "actors": {
+                                        "type": "number",
+                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -617,39 +680,12 @@
                             }
                         }
                     }
-                }
-            }
-        },
-        "/api/movies/{id}": {
-            "get": {
-                "tags": [
-                    "Movies"
-                ],
-                "summary": "Display 1 movie by the id.",
-                "description": "Gets a movie by ID",
-                "operationId": "a7031f1ec2eb856acbdd7f7054ed001d",
-                "parameters": [
+                },
+                "security": [
                     {
-                        "name": "id",
-                        "in": "path",
-                        "description": "Movie id",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
+                        "bearerAuth": []
                     }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    },
-                    "401": {
-                        "description": "Unauthenticated"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    }
-                }
+                ]
             },
             "delete": {
                 "tags": [

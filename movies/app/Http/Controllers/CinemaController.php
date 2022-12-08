@@ -117,7 +117,7 @@ class CinemaController extends Controller
 
     /**
     * @OA\Put(
-    *      path="/api/cinemas",
+    *      path="/api/cinemas/{id}",
     *      operationId="update",
     *      tags={"Cinemas"},
     *      summary="Update a Cinema",

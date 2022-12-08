@@ -53,6 +53,7 @@ class MovieController extends Controller
      *      tags={"Movies"},
      *      summary="Create a new Movie",
      *      description="Stores the movie in the DB",
+     *      security={{"bearerAuth":{}}},
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -65,6 +66,8 @@ class MovieController extends Controller
      *            @OA\Property(property="description", type="string", format="string", example="A long description about this great movie"),
      *            @OA\Property(property="release_date", type="date", format="date", example="2022-05-05"),
      *            @OA\Property(property="image", type="string", format="string", example="https://picsum.photos/200/300"),
+     *             @OA\Property(property="cinema_id", type="number", example="1"),
+     *             @OA\Property(property="actors", type="number", example="1")
      *          )
      *      ),
      *     @OA\Response(
@@ -146,11 +149,12 @@ class MovieController extends Controller
 
     /**
     * @OA\Put(
-    *      path="/api/movies",
+    *      path="/api/movies/{id}",
     *      operationId="updateMovie",
     *      tags={"Movies"},
     *      summary="Update a Movie",
     *      description="Stores the movie in the DB",
+    *      security={{"bearerAuth":{}}},
     *         @OA\Parameter(
     *          name="id",
     *          description="Movie id",
@@ -161,7 +165,7 @@ class MovieController extends Controller
     *          ),
     *      @OA\RequestBody(
     *         required=true,
-    *         @OA\JsonContent(
+     *         @OA\JsonContent(
      *            required={"title", "genre", "runtime", "director", "rating","description","release_date","image"},
      *            @OA\Property(property="title", type="string", format="string", example="Sample Title"),
      *            @OA\Property(property="genre", type="string", format="string", example="Sample Genre"),
@@ -171,7 +175,11 @@ class MovieController extends Controller
      *            @OA\Property(property="description", type="string", format="string", example="A long description about this great movie"),
      *            @OA\Property(property="release_date", type="date", format="date", example="2022-05-05"),
      *            @OA\Property(property="image", type="string", format="string", example="https://picsum.photos/200/300"),
-    *          )
+     *             @OA\Property(property="cinema_id", type="number", example="1"),
+     *             @OA\Property(property="cinema_name", type="string", format="string", example="Example Cinema Name"),
+     *           @OA\Property(property="cinema_location", type="string", format="string", example="Example Cinema Location"),
+     *             @OA\Property(property="actors", type="number", example="1")
+     *          )
     *      ),
     *     @OA\Response(
     *          response=200, description="Success",
