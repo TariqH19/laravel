@@ -48,6 +48,7 @@ class CinemaController extends Controller
      *      tags={"Cinemas"},
      *      summary="Create a new Cinema",
      *      description="Stores the cinema in the DB",
+     *      security={{"bearerAuth":{}}},
      *      @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
@@ -122,6 +123,7 @@ class CinemaController extends Controller
     *      tags={"Cinemas"},
     *      summary="Update a Cinema",
     *      description="Stores the cinema in the DB",
+    *      security={{"bearerAuth":{}}},
     *         @OA\Parameter(
     *          name="id",
     *          description="Cinema id",
